@@ -40,3 +40,25 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+angular.json
+bun.lock
+package-lock.json
+package.json
+src.zip
+src/app/app.component.css
+src/app/app.component.html
+src/app/app.component.ts
+src/app/app.routes.ts
+src/app/home/home.component.html
+src/app/home/home.component.ts
+src/app/login/login.component.css
+src/app/login/login.component.html
+src/app/login/login.component.ts
+src/index.html
+src/models/actor.model.ts
+src/models/director.model.ts
+src/models/genre.model.ts
+src/models/movie.model.ts
+src/services/movie.service.ts
+src/services/utils.service.ts
+src/styles.css
