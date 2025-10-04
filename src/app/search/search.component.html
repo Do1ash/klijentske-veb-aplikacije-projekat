@@ -40,14 +40,6 @@
     <th mat-header-cell *matHeaderCellDef> Originalni naslov </th>
     <td mat-cell *matCellDef="let m">{{ m.originalTitle }}</td>
   </ng-container>
-  <ng-container matColumnDef="genres">
-  <th mat-header-cell *matHeaderCellDef> Žanrovi </th>
-  <td mat-cell *matCellDef="let m">
-    <ng-container *ngFor="let g of m.movieGenres; let last = last">
-      {{ g.genre.name }}<span *ngIf="!last">, </span>
-    </ng-container>
-  </td>
-</ng-container>
   <ng-container matColumnDef="runTime">
     <th mat-header-cell *matHeaderCellDef> Trajanje </th>
     <td mat-cell *matCellDef="let m">{{ m.runTime }} min</td>
