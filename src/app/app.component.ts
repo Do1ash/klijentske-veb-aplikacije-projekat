@@ -1,16 +1,26 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-
-//import { RouterLink } from "../../node_modules/@angular/router/index";
-
+import { CommonModule, NgIf } from '@angular/common';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { MatToolbar } from '@angular/material/toolbar';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,RouterLink,MatToolbarModule,MatButtonModule],
+  standalone: true,
+  imports: [CommonModule, NgIf, RouterLink, RouterOutlet, MatToolbar],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'kva';
+
+  constructor(private router: Router) {}
+
+  isLoggedIn(): boolean {
+    return UserService.getCurrentUser() !== null;
+  }
+
+  logout() {
+    UserService.logout();
+    this.router.navigate(['/login']);
+  }
 }

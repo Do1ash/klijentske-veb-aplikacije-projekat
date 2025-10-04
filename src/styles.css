@@ -49,3 +49,18 @@ body {
 .full-width {
     width: 100%;
 }
+.movie-card img {
+  height: 350px;   /* fiksna visina slike */
+  object-fit: cover; /* iseče sliku da lepo stane */
+}
+.details-card {
+  max-width: 600px;   /* širina cele kartice */
+  margin: 20px auto;  /* centrirano */
+}
+
+.details-card img {
+  width: 100%;        /* slika zauzima širinu kartice */
+  max-height: 400px;  /* da ne bude previsoka */
+  object-fit: cover;  /* isecanje viška da se ne razvuče */
+  border-radius: 8px; /* malo zaobljene ivice da izgleda lepše */
+}

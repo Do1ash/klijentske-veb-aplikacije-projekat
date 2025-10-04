@@ -1,7 +1,35 @@
 .spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
-mat-toolbar{
-    display: flex;
-    justify-content: space-between;
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Razmak između linkova */
+a[mat-button],
+button[mat-button] {
+  display: flex;
+  align-items: center;
+  gap: 6px;          /* razmak između ikonice i teksta */
+  margin: 0 6px;     /* razmak između dugmadi */
+  text-decoration: none;
+}
+
+a[mat-button] i,
+button[mat-button] i {
+  font-size: 16px;
+}
+
+/* Responsive: sakriva tekst na manjim ekranima */
+@media only screen and (max-width: 630px) {
+  a[mat-button] span,
+  button[mat-button] span {
+    display: none;
+  }
+
+  .about-btn {
+    display: none;
+  }
 }

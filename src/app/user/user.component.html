@@ -1,0 +1,120 @@
+<ng-container *ngIf="userCopy">
+
+  <mat-card class="user-card" appearance="outlined">
+    <h2>Profil korisnika</h2>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Ime</mat-label>
+      <input matInput [(ngModel)]="userCopy.firstName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Prezime</mat-label>
+      <input matInput [(ngModel)]="userCopy.lastName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="userCopy.email" disabled>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Telefon</mat-label>
+      <input matInput [(ngModel)]="userCopy.phone">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Adresa</mat-label>
+      <input matInput [(ngModel)]="userCopy.address">
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" (click)="doUpdateUser()">Sačuvaj izmene</button>
+    </div>
+  </mat-card>
+
+  <mat-card class="password-card" appearance="outlined">
+    <h2>Promena lozinke</h2>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Stara lozinka</mat-label>
+      <input matInput type="password" [(ngModel)]="oldPasswordValue">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Nova lozinka</mat-label>
+      <input matInput type="password" [(ngModel)]="newPasswordValue">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Ponovi lozinku</mat-label>
+      <input matInput type="password" [(ngModel)]="repeatPasswordValue">
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button color="accent" (click)="doChangePassword()">Promeni lozinku</button>
+    </div>
+  </mat-card>
+
+  <mat-card class="orders-card" appearance="outlined">
+    <h2>Moje rezervacije</h2>
+
+    <mat-table [dataSource]="user?.orders || []" class="mat-elevation-z8" *ngIf="user?.orders?.length; else noOrders">
+
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+        <mat-cell *matCellDef="let o">{{ o.id }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="movie">
+        <mat-header-cell *matHeaderCellDef> Film </mat-header-cell>
+        <mat-cell *matCellDef="let o">{{ o.movie.title }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="count">
+        <mat-header-cell *matHeaderCellDef> Količina </mat-header-cell>
+        <mat-cell *matCellDef="let o">{{ o.count }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Cena po karti </mat-header-cell>
+        <mat-cell *matCellDef="let o">{{ o.pricePerItem }} RSD</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="total">
+        <mat-header-cell *matHeaderCellDef> Ukupno </mat-header-cell>
+        <mat-cell *matCellDef="let o">{{ o.count * o.pricePerItem }} RSD</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let o">{{ o.status }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Akcije </mat-header-cell>
+        <mat-cell *matCellDef="let o">
+          <button mat-button color="primary" *ngIf="o.status === 'ordered'" (click)="doPay(o)">Plati</button>
+          <button mat-button color="warn" *ngIf="o.status === 'ordered'" (click)="doCancel(o)">Otkaži</button>
+          <!-- <button mat-button color="accent" *ngIf="o.status === 'paid' && o.rating === null"
+            (click)="doRating(o, 1)">👍</button>
+          <button mat-button color="accent" *ngIf="o.status === 'paid' && o.rating === null"
+            (click)="doRating(o, 0)">👎</button> -->
+
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <ng-template #noOrders>
+      <p>Nema trenutnih rezervacija.</p>
+    </ng-template>
+  </mat-card>
+
+</ng-container>
+
+<ng-template #notLogged>
+  <p>Morate biti prijavljeni da biste videli svoj profil.</p>
+</ng-template>

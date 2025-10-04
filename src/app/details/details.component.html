@@ -1,0 +1,27 @@
+<mat-card *ngIf="movie" class="details-card">
+  <img mat-card-image [src]="movie.poster" [alt]="movie.title">
+  <mat-card-content>
+    <h2>{{ movie.title }}</h2>
+    <h3>{{ movie.originalTitle }}</h3>
+    <p>{{ movie.description }}</p>
+
+    <p><b>Režiser:</b> {{ movie.director?.name }}</p>
+    <p><b>Glumci:</b>
+      <ng-container *ngFor="let a of movie.movieActors; let last = last">
+        {{ a.actor.name }}<span *ngIf="!last">, </span>
+      </ng-container>
+    </p>
+    <p><b>Žanrovi:</b>
+      <ng-container *ngFor="let g of movie.movieGenres; let last = last">
+        {{ g.genre.name }}<span *ngIf="!last">, </span>
+      </ng-container>
+    </p>
+    <p><b>Trajanje:</b> {{ movie.runTime }} min</p>
+    <p><b>Datum početka:</b> {{ movie.startDate | date }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="accent" (click)="reserve()">Rezerviši</button>
+  </mat-card-actions>
+</mat-card>
+
+<p *ngIf="!movie">Učitavanje detalja o filmu...</p>

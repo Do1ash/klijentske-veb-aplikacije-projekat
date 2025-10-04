@@ -3,18 +3,26 @@
     <p style="color: red;">{{error}}</p>
 </div>
 <div *ngIf="movies" class="container">
-    <mat-card class="example-card" appearance="outlined" *ngFor="let movies of movies">
+  <mat-card class="movie-card" appearance="outlined" *ngFor="let movie of movies">
+    <img mat-card-image [src]="movie.poster" [alt]="movie.title">
+    <mat-card-content>
+      <h3>{{ movie.title }}</h3>
+      <p>{{ movie.originalTitle }}</p>
+      <p><b>Žanr:</b>
+        <ng-container *ngFor="let g of movie.movieGenres; let last = last">
+          {{ g.genre.name }}<span *ngIf="!last">, </span>
+        </ng-container>
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="openDetails(movie.movieId)">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> Detalji
+      </button>
+      <button mat-stroked-button color="accent" (click)="reserve(movie.movieId)">
+        <i class="fa-solid fa-ticket"></i> Rezerviši
+      </button>
+    </mat-card-actions>
 
-        <img mat-card-image src="https://material.angular.dev/assets/img/examples/shiba2.jpg"
-            alt="Photo of a Shiba Inu">
-        <mat-card-content>
-            <h3>{{movies.title}}</h3>
-        </mat-card-content>
-        <mat-card-actions>
-            <button matButton>LIKE</button>
-            <button matButton>SHARE</button>
-        </mat-card-actions>
-    </mat-card>
     
 
     <div *ngIf="!movies && !error">
