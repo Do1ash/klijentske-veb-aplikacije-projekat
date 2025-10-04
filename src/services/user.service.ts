@@ -7,29 +7,24 @@ export class UserService {
   private static STORAGE_KEY = 'kva_users';
   private static CURRENT_USER_KEY = 'kva_current_user';
 
-  // 🔹 Učitava sve korisnike iz localStorage
   private static loadUsers(): UserModel[] {
     const raw = localStorage.getItem(this.STORAGE_KEY);
     return raw ? JSON.parse(raw) as UserModel[] : [];
   }
 
-  // 🔹 Čuva listu korisnika u localStorage
   private static saveUsers(users: UserModel[]) {
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(users));
   }
 
-  // 🔹 Generiše sledeći ID
   private static nextId(): number {
     const users = this.loadUsers();
     if (users.length === 0) return 1;
     return Math.max(...users.map(u => u.id)) + 1;
   }
 
-  // ✅ Kreira novog korisnika
   static createUser(newUser: NewUser): boolean {
     const users = this.loadUsers();
 
-    // provera duplikata po emailu
     if (users.some(u => u.email.toLowerCase() === newUser.email.toLowerCase())) {
       return false;
     }
@@ -51,7 +46,6 @@ export class UserService {
     return true;
   }
 
-  // ✅ Login vraća user ako uspe, null ako ne uspe
   static login(email: string, password: string): boolean {
     const users = this.loadUsers();
     const found = users.find(
@@ -63,18 +57,15 @@ export class UserService {
     return true;
   }
 
-  // ✅ Logout briše aktivnog korisnika
   static logout() {
     localStorage.removeItem(this.CURRENT_USER_KEY);
   }
 
-  // ✅ Dohvata trenutno ulogovanog korisnika
   static getCurrentUser(): UserModel | null {
     const raw = localStorage.getItem(this.CURRENT_USER_KEY);
     return raw ? JSON.parse(raw) as UserModel : null;
   }
 
-  // ✅ Dodaje rezervaciju (Order) korisniku
   static addOrderToUser(userId: number, order: OrderModel): boolean {
     const users = this.loadUsers();
     const idx = users.findIndex(u => u.id === userId);
@@ -83,7 +74,6 @@ export class UserService {
     users[idx].orders.push(order);
     this.saveUsers(users);
 
-    // ako je aktivni korisnik, ažuriraj i njega
     if (this.getCurrentUser()?.id === userId) {
       localStorage.setItem(this.CURRENT_USER_KEY, JSON.stringify(users[idx]));
     }
@@ -91,7 +81,6 @@ export class UserService {
     return true;
   }
 
-  // ✅ Menja lozinku aktivnom korisniku
   static changePassword(newPassword: string): boolean {
     const user = this.getCurrentUser();
     if (!user) return false;
@@ -106,7 +95,6 @@ export class UserService {
     return true;
   }
 
-  // ✅ Ažurira podatke aktivnog korisnika
   static updateUser(updatedUser: UserModel): boolean {
     const users = this.loadUsers();
     const idx = users.findIndex(u => u.id === updatedUser.id);
@@ -118,7 +106,6 @@ export class UserService {
     return true;
   }
 
-  // ✅ Menja status rezervacije (order)
   static changeOrderStatus(
     status: 'ordered' | 'reserved' | 'paid' | 'canceled',
     orderId: number
