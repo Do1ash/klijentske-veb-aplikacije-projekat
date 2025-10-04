@@ -9,8 +9,10 @@
         <a routerLink="/login"> Login</a>
     </ng-container>
     <ng-template #logged>
-        <a routerLink="/user"> Profil </a>
-        <a href="#" class="logout-btn" (click)="logout()"> Logout </a>
+        <div class="nav-links">
+        <a routerLink="/user" mat-button>Profil</a>
+        <a (click)="logout()" mat-button class="logout-btn">Logout</a>
+        </div>
     </ng-template>
     <a routerLink="/about" mat-button><i class="fa-solid fa-circle-info"></i>About</a>
 </mat-toolbar>

@@ -97,9 +97,9 @@
           <button mat-button color="primary" *ngIf="o.status === 'ordered'" (click)="doPay(o)">Plati</button>
           <button mat-button color="warn" *ngIf="o.status === 'ordered'" (click)="doCancel(o)">Otkaži</button>
           <!-- <button mat-button color="accent" *ngIf="o.status === 'paid' && o.rating === null"
-            (click)="doRating(o, 1)">👍</button>
+            (click)="doRating(o, 1)">LIKE</button>
           <button mat-button color="accent" *ngIf="o.status === 'paid' && o.rating === null"
-            (click)="doRating(o, 0)">👎</button> -->
+            (click)="doRating(o, 0)">DISLIKE</button> -->
 
         </mat-cell>
       </ng-container>

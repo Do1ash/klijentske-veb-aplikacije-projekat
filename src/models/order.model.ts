@@ -3,6 +3,8 @@ import { MovieModel } from "./movie.model"
 export interface OrderModel {
   id: number
   movieId: number
+  userId: number;
+  date: string;
   movie: MovieModel
   projectionDate: string
   ticketCount: number

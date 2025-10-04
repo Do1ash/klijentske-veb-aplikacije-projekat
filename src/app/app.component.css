@@ -7,13 +7,12 @@ mat-toolbar {
   justify-content: space-between;
 }
 
-/* Razmak između linkova */
 a[mat-button],
 button[mat-button] {
   display: flex;
   align-items: center;
-  gap: 6px;          /* razmak između ikonice i teksta */
-  margin: 0 6px;     /* razmak između dugmadi */
+  gap: 6px;         
+  margin: 0 6px;     
   text-decoration: none;
 }
 
@@ -22,7 +21,6 @@ button[mat-button] i {
   font-size: 16px;
 }
 
-/* Responsive: sakriva tekst na manjim ekranima */
 @media only screen and (max-width: 630px) {
   a[mat-button] span,
   button[mat-button] span {
@@ -31,5 +29,10 @@ button[mat-button] i {
 
   .about-btn {
     display: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 16px;
+    align-items: center;
   }
 }

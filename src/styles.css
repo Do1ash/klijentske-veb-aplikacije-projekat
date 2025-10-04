@@ -50,17 +50,40 @@ body {
     width: 100%;
 }
 .movie-card img {
-  height: 350px;   /* fiksna visina slike */
-  object-fit: cover; /* iseče sliku da lepo stane */
+  height: 350px;  
+  object-fit: cover;
 }
 .details-card {
-  max-width: 600px;   /* širina cele kartice */
-  margin: 20px auto;  /* centrirano */
+  max-width: 600px;
+  margin: 20px auto;
 }
 
 .details-card img {
-  width: 100%;        /* slika zauzima širinu kartice */
-  max-height: 400px;  /* da ne bude previsoka */
-  object-fit: cover;  /* isecanje viška da se ne razvuče */
-  border-radius: 8px; /* malo zaobljene ivice da izgleda lepše */
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
 }
+
+mat-toolbar {
+  display: flex;
+  align-items: center;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mat-toolbar .nav-links a.mat-button,
+.mat-toolbar .nav-links button.mat-button,
+.nav-links a,
+.nav-links button {
+  margin: 0;
+  padding: 0 6px;
+}
+
+.logout-btn {
+  margin-left: 12px;
+}
+
