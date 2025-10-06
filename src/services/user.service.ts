@@ -143,4 +143,12 @@ export class UserService {
     localStorage.setItem(this.CURRENT_USER_KEY, JSON.stringify(users[idx]));
     return true;
   }
+  static createOrder(order: OrderModel): boolean {
+  const user = this.getCurrentUser();
+  if (!user) return false;
+
+  const success = this.addOrderToUser(user.id, order);
+  return success;
+}
+
 }

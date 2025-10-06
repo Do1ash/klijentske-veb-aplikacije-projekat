@@ -29,8 +29,6 @@ export class MovieService {
     static async getMovieById(id: number) {
         return client.get(`/movie/${id}`);
     }
-
-    // 🔎 Pretraga filmova
     static async searchMovies(params: {
         search?: string,
         actor?: number,
@@ -40,23 +38,15 @@ export class MovieService {
     }) {
         return client.get('/movie', { params });
     }
-
-    // 🎭 Glumci
     static async getActors(search?: string) {
         return client.get('/actor', { params: search ? { search } : {} });
     }
-
-    // 🎬 Žanrovi
     static async getGenres(search?: string) {
         return client.get('/genre', { params: search ? { search } : {} });
     }
-
-    // 🎥 Režiseri
     static async getDirectors(search?: string) {
         return client.get('/director', { params: search ? { search } : {} });
     }
-
-    // ⏱ Trajanja
     static async getRuntimes() {
         return client.get('/movie/runtime');
     }

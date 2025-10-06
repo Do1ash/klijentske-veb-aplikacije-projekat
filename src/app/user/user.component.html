@@ -1,5 +1,6 @@
-<ng-container *ngIf="userCopy">
+<ng-container *ngIf="userCopy; else notLogged">
 
+  <!-- PROFIL KORISNIKA -->
   <mat-card class="user-card" appearance="outlined">
     <h2>Profil korisnika</h2>
 
@@ -33,6 +34,7 @@
     </div>
   </mat-card>
 
+  <!-- PROMENA LOZINKE -->
   <mat-card class="password-card" appearance="outlined">
     <h2>Promena lozinke</h2>
 
@@ -56,10 +58,11 @@
     </div>
   </mat-card>
 
+  <!-- REZERVACIJE -->
   <mat-card class="orders-card" appearance="outlined">
     <h2>Moje rezervacije</h2>
 
-    <mat-table [dataSource]="user?.orders || []" class="mat-elevation-z8" *ngIf="user?.orders?.length; else noOrders">
+    <mat-table [dataSource]="user?.orders ?? []" class="mat-elevation-z8" *ngIf="user?.orders?.length; else noOrders">
 
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
@@ -68,7 +71,7 @@
 
       <ng-container matColumnDef="movie">
         <mat-header-cell *matHeaderCellDef> Film </mat-header-cell>
-        <mat-cell *matCellDef="let o">{{ o.movie.title }}</mat-cell>
+        <mat-cell *matCellDef="let o">{{ o.movie?.title || 'N/A' }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="count">
@@ -96,11 +99,6 @@
         <mat-cell *matCellDef="let o">
           <button mat-button color="primary" *ngIf="o.status === 'ordered'" (click)="doPay(o)">Plati</button>
           <button mat-button color="warn" *ngIf="o.status === 'ordered'" (click)="doCancel(o)">Otkaži</button>
-          <!-- <button mat-button color="accent" *ngIf="o.status === 'paid' && o.rating === null"
-            (click)="doRating(o, 1)">LIKE</button>
-          <button mat-button color="accent" *ngIf="o.status === 'paid' && o.rating === null"
-            (click)="doRating(o, 0)">DISLIKE</button> -->
-
         </mat-cell>
       </ng-container>
 

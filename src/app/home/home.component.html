@@ -1,6 +1,6 @@
 <div *ngIf="error">
-    <h3>Oops, an error occured!</h3>
-    <p style="color: red;">{{error}}</p>
+  <h3>Oops, an error occured!</h3>
+  <p style="color: red;">{{error}}</p>
 </div>
 <div *ngIf="movies" class="container">
   <mat-card class="movie-card" appearance="outlined" *ngFor="let movie of movies">
@@ -18,13 +18,14 @@
       <button mat-raised-button color="primary" (click)="openDetails(movie.movieId)">
         <i class="fa-solid fa-arrow-up-right-from-square"></i> Detalji
       </button>
-      <button mat-stroked-button color="accent" (click)="reserve(movie.movieId)">
+      <button mat-button color="accent" [routerLink]="['/order', movie.movieId]">
         <i class="fa-solid fa-ticket"></i> Rezerviši
       </button>
+
     </mat-card-actions>
 
-    
+
 
     <div *ngIf="!movies && !error">
-        <p>Podaci se ucitavaju</p>
-</div>
+      <p>Podaci se ucitavaju</p>
+    </div>

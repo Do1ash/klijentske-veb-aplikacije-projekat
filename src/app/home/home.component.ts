@@ -5,10 +5,10 @@ import { AxiosError } from 'axios';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MovieModel } from '../../models/movie.model';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-home',
-  imports: [NgIf, NgFor, MatCardModule, MatButtonModule],
+  imports: [NgIf, NgFor, MatCardModule, MatButtonModule,RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -27,7 +27,6 @@ export class HomeComponent {
   }
 
   reserve(id: number) {
-    // privremeno - biće implementirano kasnije
     alert(`Rezervacija za film #${id} nije još implementirana.`);
   }
 }

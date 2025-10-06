@@ -1,14 +1,11 @@
-import { MovieModel } from "./movie.model"
+import { MovieModel } from './movie.model';
 
 export interface OrderModel {
-  id: number
-  userId: number
-  movieId: number
-  movie: MovieModel
-  projectionDate: string
-  ticketCount: number
-  ticketPrice: number
-  totalPrice: number
+  id: number;
+  movieId: number;
+  movie: MovieModel;
+  count: number;
+  pricePerItem: number;
   status: 'ordered' | 'reserved' | 'paid' | 'canceled';
   rating: boolean | null;
 }

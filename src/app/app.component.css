@@ -30,9 +30,5 @@ button[mat-button] i {
   .about-btn {
     display: none;
   }
-  .nav-links {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-  }
+
 }

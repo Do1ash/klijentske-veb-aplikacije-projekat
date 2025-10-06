@@ -1,0 +1,25 @@
+<mat-card *ngIf="movie" class="movie-card" appearance="outlined">
+  <h2>Rezervacija za film</h2>
+
+  <img  [src]="movie.poster" alt="{{ movie.title }}" class="poster" />
+
+  <mat-card-content>
+    <h3>{{ movie.title }}</h3>
+    <p>{{ movie.shortDescription }}</p>
+    <p><strong>Trajanje:</strong> {{ movie.runTime }} min</p>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Broj karata</mat-label>
+      <input type="number" matInput min="1" [(ngModel)]="count">
+    </mat-form-field>
+
+    <p><strong>Cena po karti:</strong> {{ pricePerItem }} RSD</p>
+    <p><strong>Ukupno:</strong> {{ count * pricePerItem }} RSD</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="doOrder()">
+      <i class="fa-solid fa-ticket"></i> Rezerviši
+    </button>
+  </mat-card-actions>
+</mat-card>

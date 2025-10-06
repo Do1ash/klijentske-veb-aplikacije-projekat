@@ -50,7 +50,7 @@ export class UserComponent {
     }
 
     this.user = UserService.getCurrentUser();
-this.userCopy = { ...this.user! }; // znak ! kaže TypeScriptu da nije null
+this.userCopy = { ...this.user! }; 
   }
 
   doChangePassword() {

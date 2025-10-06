@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { RouterLink } from '@angular/router';
+import { Router,RouterLink } from '@angular/router';
 import { MovieService } from '../../services/movie.service';
 
 @Component({
@@ -27,25 +27,22 @@ import { MovieService } from '../../services/movie.service';
 })
 export class SearchComponent implements OnInit {
 
-  // tabela
   displayedColumns: string[] = ['title', 'originalTitle', 'runTime', 'director', 'actions'];
   movies: any[] = [];
 
-  // filteri
   searchText: string = '';
   selectedActor: number | null = null;
   selectedGenre: number | null = null;
   selectedDirector: number | null = null;
 
-  // dropdown podaci
   actors: any[] = [];
   genres: any[] = [];
   directors: any[] = [];
+  movie: any;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // učitaj sve filtere i filmove
     MovieService.getActors().then(r => this.actors = r.data);
     MovieService.getGenres().then(r => this.genres = r.data);
     MovieService.getDirectors().then(r => this.directors = r.data);
@@ -71,6 +68,6 @@ export class SearchComponent implements OnInit {
     this.doSearch();
   }
   reserve(id: number) {
-  alert(`Rezervacija za film #${id} nije još implementirana.`);
+    this.router.navigate(['/order', id]);
 }
 }
